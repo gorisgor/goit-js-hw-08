@@ -1,0 +1,43 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 16px;
+  background-color: #fff; 
+}
+
+ul {
+  text-decoration: none;
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-left: 0;
+}
+
+li {
+  list-style-type: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.container {
+  max-width: 1176px;
+  margin: 0 auto;
+  padding: 0 24px;
+  }
+
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  gap: 24px;
+}
+
+
+.gallery img {
+  width: 360px;
+  height: 200px;
+}
