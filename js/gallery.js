@@ -68,13 +68,13 @@ const gallery = document.querySelector(".gallery");
 
 function createGalleryEl(image) {
   const li = document.createElement("li");
-  const a = document.createAttribute("a")
+  // const a = document.createAttribute("a")
   // a.href = image.original
   const img = document.createElement("img");
   img.src = image.preview;
   img.alt = image.description;
   // img.dataSource = image.data-source;
-  li.append(a, img);
+  li.append(img);
   // a.append(img);
   return li;
 }
