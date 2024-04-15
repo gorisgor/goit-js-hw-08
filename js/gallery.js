@@ -76,7 +76,8 @@ function createGalleryEl(image) {
   const img = document.createElement("img");
   img.src = image.preview;
   img.alt = image.description;
-  img.setAttribute("data-source", image.original); 
+  img.setAttribute("data-source", image.original);
+  img.classList.add("gallery-img");
   li.appendChild(a);
   a.appendChild(img);
   return li;
@@ -85,6 +86,14 @@ function createGalleryEl(image) {
 const galleryElems = images.map(createGalleryEl);
 
 gallery.append(...galleryElems);
+const links = gallery.querySelectorAll("a");
+function handleClick(event) {
+   console.log(event.target);
+}
+
+gallery.addEventListener("click", handleClick);
+
+
 
 // const instance = basicLightbox.create(`
 // 	<h1>Dynamic Content</h1>
