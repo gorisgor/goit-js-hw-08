@@ -68,14 +68,17 @@ const gallery = document.querySelector(".gallery");
 
 function createGalleryEl(image) {
   const li = document.createElement("li");
-  // const a = document.createAttribute("a")
-  // a.href = image.original
+  const a = document.createElement("a");
+  a.href = image.original;
+  a.addEventListener("click", function(event) {
+    event.preventDefault(); 
+  });
   const img = document.createElement("img");
   img.src = image.preview;
   img.alt = image.description;
-  // img.dataSource = image.data-source;
-  li.append(img);
-  // a.append(img);
+  img.setAttribute("data-source", image.original); 
+  li.appendChild(a);
+  a.appendChild(img);
   return li;
 }
 
