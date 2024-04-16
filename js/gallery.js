@@ -64,7 +64,7 @@ const images = [
   },
 ];
 // Варіант 1
-const galleryElems = document.querySelector('.gallery');
+const galleryElements = document.querySelector('.gallery');
 const markup = images.reduce((html, image) => {
   return (html += `
   <li class="gallery-item">
@@ -79,8 +79,8 @@ const markup = images.reduce((html, image) => {
   </li>
   `);
 }, '');
-galleryElems.insertAdjacentHTML('beforeend', markup);
-galleryElems.addEventListener("click", handleImageClick);
+galleryElements.insertAdjacentHTML('beforeend', markup);
+galleryElements.addEventListener("click", handleImageClick);
 function handleImageClick(event) {
   event.preventDefault();
   if (event.target === event.currentTarget) return;
@@ -108,7 +108,7 @@ function handleImageClick(event) {
 }
 // Варіант 2
 // const gallery = document.querySelector(".gallery");
-// function createGalleryEl(image) {
+// function createGalleryElement(image) {
 //   const li = document.createElement("li");
 //   const a = document.createElement("a");
 //   a.href = image.original;
@@ -125,8 +125,8 @@ function handleImageClick(event) {
 //   a.appendChild(img);
 //   return li;
 // };
-// const galleryElems = images.map(createGalleryEl);
-// gallery.append(...galleryElems);
+// const galleryElements = images.map(createGalleryElement);
+// gallery.append(...galleryElements);
 
 // gallery.addEventListener("click", onImageClick)
 // function onImageClick(event) {
@@ -150,7 +150,7 @@ function handleImageClick(event) {
 //     document.addEventListener('click', function(event) {
 //       if (event.target.closest('.modal')) {
 //           instance.close();
-//       }
+//         }
 //       }
 //     )
 // }
