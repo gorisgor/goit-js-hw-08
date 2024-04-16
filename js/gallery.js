@@ -64,7 +64,7 @@ const images = [
   },
 ];
 // Варіант 1
-const galleryEl = document.querySelector('.gallery');
+const galleryElems = document.querySelector('.gallery');
 const markup = images.reduce((html, image) => {
   return (html += `
   <li class="gallery-item">
@@ -79,8 +79,8 @@ const markup = images.reduce((html, image) => {
   </li>
   `);
 }, '');
-galleryEl.insertAdjacentHTML('beforeend', markup);
-galleryEl.addEventListener("click", handleImageClick);
+galleryElems.insertAdjacentHTML('beforeend', markup);
+galleryElems.addEventListener("click", handleImageClick);
 function handleImageClick(event) {
   event.preventDefault();
   if (event.target === event.currentTarget) return;
