@@ -19,6 +19,7 @@ li {
 }
 
 img {
+  display: block;
   max-width: 100%;
   height: auto;
 }
@@ -44,4 +45,17 @@ img {
 
 .gallery img:hover {
   transform: scale(1.04);
+}
+.modal {
+  width: 1440px;
+  height: 100%;
+  background: rgba(46, 47, 66, 0.8);
+  display: flex;
+  justify-content: center;
+  align-content: center;
+
+}
+.modal img {
+  width: 1112px;
+  height: 640px;
 }

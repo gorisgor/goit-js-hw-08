@@ -63,76 +63,94 @@ const images = [
     description: 'Lighthouse Coast Sea',
   },
 ];
-
-const gallery = document.querySelector(".gallery");
-
-function createGalleryEl(image) {
-  const li = document.createElement("li");
-  const a = document.createElement("a");
-  a.href = image.original;
-  a.addEventListener("click", function(event) {
-    event.preventDefault(); 
-  });
-  const img = document.createElement("img");
-  img.src = image.preview;
-  img.alt = image.description;
-  img.setAttribute("data-source", image.original);
-  img.classList.add("gallery-img");
-  li.appendChild(a);
-  a.appendChild(img);
-  return li;
+// Варіант 1
+const galleryEl = document.querySelector('.gallery');
+const markup = images.reduce((html, image) => {
+  return (html += `
+  <li class="gallery-item">
+    <a class="gallery-link" href="${image.original}">
+      <img
+        class="gallery-image"
+        src="${image.preview}"
+        data-source="${image.original}"
+        alt="${image.description}"
+      />
+    </a>
+  </li>
+  `);
+}, '');
+galleryEl.insertAdjacentHTML('beforeend', markup);
+galleryEl.addEventListener("click", handleImageClick);
+function handleImageClick(event) {
+  event.preventDefault();
+  if (event.target === event.currentTarget) return;
+  const imageOpenEl = event.target.closest('.gallery-image');
+  const source = imageOpenEl.dataset.source;
+  const currentImage = images.find(image => {
+        return image.original === source;
+    } 
+  );
+  const instance = basicLightbox.create(
+    `<div class="modal">
+      <img
+        src="${currentImage.original}"
+        alt="${currentImage.description}"
+      />
+    </div>`
+  );
+  instance.show();
+  document.addEventListener('click', function(event) {
+      if (event.target.closest('.modal')) {
+        instance.close();
+        }
+    }
+  );
 }
+// Варіант 2
+// const gallery = document.querySelector(".gallery");
+// function createGalleryEl(image) {
+//   const li = document.createElement("li");
+//   const a = document.createElement("a");
+//   a.href = image.original;
+//   a.addEventListener("click", function(event) {
+//     event.preventDefault(); 
+//       }
+//     );
+//   const img = document.createElement("img");
+//   img.src = image.preview;
+//   img.alt = image.description;
+//   img.setAttribute("data-source", image.original);
+//   img.classList.add("gallery-img");
+//   li.appendChild(a);
+//   a.appendChild(img);
+//   return li;
+// };
+// const galleryElems = images.map(createGalleryEl);
+// gallery.append(...galleryElems);
 
-const galleryElems = images.map(createGalleryEl);
-
-gallery.append(...galleryElems);
-const links = gallery.querySelectorAll("a");
-function handleClick(event) {
-   console.log(event.target);
-}
-
-gallery.addEventListener("click", handleClick);
-
-
-
-// const instance = basicLightbox.create(`
-// 	<h1>Dynamic Content</h1>
-// 	<p>You can set the content of the lightbox with JS.</p>
-// `)
-// // const instance = basicLightbox.create(`
-// // 	<h1>Not closable</h1>
-// // 	<p>It's not possible to close this lightbox with a click.</p>
-// // `, {
-// // 	closable: false
-// // })
-// // const instance = basicLightbox.create(
-// // 	document.querySelector('#template')
-// // )
-// const visible = basicLightbox.visible()
-
-// instance.show(() => console.log('lightbox now visible'))
-
-// instance.close(() => console.log('lightbox not visible anymore'))
-
-// const elem = instance.element("img")
-
-// {
-// 	/*
-// 	 * Prevents the lightbox from closing when clicking its background.
-// 	 */
-// 	closable: true,
-// 	/*
-// 	 * One or more space separated classes to be added to the basicLightbox element.
-// 	 */
-// 	className: '',
-// 	/*
-// 	 * Function that gets executed before the lightbox will be shown.
-// 	 * Returning false will prevent the lightbox from showing.
-// 	 */
-// 	onShow: (instance) => {},
-// 	/*
-// 	 * Function that gets executed before the lightbox closes.
-// 	 * Returning false will prevent the lightbox from closing.
-// 	 */
-// 	onClose: (instance) => {}
+// gallery.addEventListener("click", onImageClick)
+// function onImageClick(event) {
+//   if (event.target === event.currentTarget) return;
+//   const imageOpenEl = event.target.closest('.gallery img');
+//   const source = imageOpenEl.dataset.source;
+//   console.log("source:", source)
+//   const currentImage = images.find(image => {
+//   return image.original === source;
+//     }
+//   );
+//   const instance = basicLightbox.create(
+//     `<div class="modal">
+//       <img
+//         src="${currentImage.original}"
+//         alt="${currentImage.description}"
+//       />
+//     </div>`
+//   );
+//     instance.show();
+//     document.addEventListener('click', function(event) {
+//       if (event.target.closest('.modal')) {
+//           instance.close();
+//       }
+//       }
+//     )
 // }
