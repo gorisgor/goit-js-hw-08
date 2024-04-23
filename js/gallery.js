@@ -79,6 +79,7 @@ const markup = images.reduce((html, image) => {
   `);
 }, '');
 galleryElements.insertAdjacentHTML('beforeend', markup);
+
 galleryElements.addEventListener("click", handleImageClick);
 function handleImageClick(event) {
   event.preventDefault();
