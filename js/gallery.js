@@ -63,7 +63,6 @@ const images = [
     description: 'Lighthouse Coast Sea',
   },
 ];
-// Варіант 1
 const galleryElements = document.querySelector('.gallery');
 const markup = images.reduce((html, image) => {
   return (html += `
